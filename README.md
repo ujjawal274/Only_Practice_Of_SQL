@@ -1,5 +1,3 @@
-[README.md](https://github.com/user-attachments/files/32199575/README.md)
-
 # 🗄️ SQL Practice & Database Management
 
 <div align="center">
