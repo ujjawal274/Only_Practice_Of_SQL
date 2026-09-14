@@ -619,7 +619,7 @@ Your support motivates me to keep learning, practicing, and adding more SQL conc
 
 ### 🤝 Contributions are always welcome!
 
-### 💙 Thanks for visiting my repository!
+### 🧡 Thanks for visiting my repository!
 
 </div>
 
