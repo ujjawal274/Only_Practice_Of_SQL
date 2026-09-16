@@ -361,6 +361,104 @@ WHERE city= 'Ranchi' OR city= 'Pune' ;
 DELETE FROM MovieTickets
 WHERE TicketPrice > 200 AND Status != 'Cancelled' ;
 
+-- TRUNCATE --
+
+CREATE TABLE TravelBookings (
+    BookingID INT PRIMARY KEY,
+    CustomerName VARCHAR(50),
+    Destination VARCHAR(50),
+    Amount INT
+);
+
+INSERT INTO TravelBookings VALUES
+(101, 'Aman', 'Goa', 12000),
+(102, 'Riya', 'Manali', 18000),
+(103, 'Karan', 'Jaipur', 9000);
+SELECT * FROM TravelBookings ;
+
+-- TravelBookings table ka saara data remove karo using TRUNCATE.
+TRUNCATE TABLE TravelBookings ;
+
+CREATE TABLE GameScores (
+    ScoreID INT PRIMARY KEY,
+    PlayerName VARCHAR(50),
+    Game VARCHAR(50),
+    Score INT
+);
+
+INSERT INTO GameScores VALUES
+(1, 'Rahul', 'Cricket', 85),
+(2, 'Vikas', 'Football', 92),
+(3, 'Neha', 'Badminton', 78);
+SELECT * FROM GameScores ;
+
+-- GameScores table ka poora data clear karo using TRUNCATE.
+TRUNCATE TABLE GameScores;
+
+CREATE TABLE FoodOrders (
+    OrderID INT PRIMARY KEY,
+    CustomerName VARCHAR(50),
+    FoodItem VARCHAR(50),
+    Amount INT
+);
+
+INSERT INTO FoodOrders VALUES
+(201, 'Amit', 'Pizza', 450),
+(202, 'Priya', 'Burger', 250),
+(203, 'Rohit', 'Pasta', 350);
+SELECT * FROM FoodOrders ;
+
+-- FoodOrders ka saara data ek saath delete karo, lekin table ko delete nahi karna hai.
+TRUNCATE TABLE FoodOrders ;
+
+CREATE TABLE EventTickets (
+    TicketID INT PRIMARY KEY,
+    CustomerName VARCHAR(50),
+    EventName VARCHAR(50),
+    TicketPrice INT
+);
+
+INSERT INTO EventTickets VALUES
+(301, 'Arjun', 'Concert', 1500),
+(302, 'Simran', 'Comedy Show', 800),
+(303, 'Kunal', 'Music Fest', 2000);
+SELECT * FROM EventTickets;
+
+-- EventTickets table ko completely empty karo using the correct command.
+TRUNCATE TABLE EventTickets ;
+
+CREATE TABLE FitnessMembers (
+    MemberID INT PRIMARY KEY,
+    MemberName VARCHAR(50),
+    Plan VARCHAR(30),
+    Fees INT
+);
+
+INSERT INTO FitnessMembers VALUES
+(401, 'Varun', 'Monthly', 1500),
+(402, 'Sneha', 'Quarterly', 4000),
+(403, 'Aditya', 'Yearly', 12000);
+SELECT * FROM FitnessMembers ;
+
+-- FitnessMembers ka saara existing data remove karo, but table structure aur columns ko maintain rakhna hai.
+TRUNCATE TABLE FitnessMembers ;
+
+CREATE TABLE OnlineCourses (
+    CourseID INT PRIMARY KEY,
+    CourseName VARCHAR(50),
+    Instructor VARCHAR(50),
+    Fees INT
+);
+
+INSERT INTO OnlineCourses VALUES
+(501, 'Python', 'Rahul Sharma', 5000),
+(502, 'SQL', 'Amit Verma', 4000),
+(503, 'Power BI', 'Neha Singh', 6000);
+SELECT * FROM OnlineCourses ;
+
+-- OnlineCourses table ko empty karo using TRUNCATE, aur kisi bhi row ko individually delete karne ke liye DELETE use nahi karna hai.
+TRUNCATE TABLE OnlineCourses ;
+
 
 
 
