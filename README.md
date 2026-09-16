@@ -290,6 +290,8 @@ WHERE City = 'Ranchi'
 OR City = 'Pune';
 ```
 
+
+
 ---
 
 # 🗂️ Practice Datasets
