@@ -290,6 +290,9 @@ WHERE City = 'Ranchi'
 OR City = 'Pune';
 ```
 
+# 🗑️ TRUNCATE Operations
+
+
 
 
 ---
