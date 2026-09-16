@@ -251,7 +251,7 @@ WHERE City IS NULL;
 
 # 🗑️ DELETE Operations
 
-The project also includes practical `DELETE` queries.
+The project includes practical `DELETE` queries.
 
 Example:
 
