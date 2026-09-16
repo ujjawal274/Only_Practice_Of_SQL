@@ -292,7 +292,7 @@ OR City = 'Pune';
 
 # 🗑️ TRUNCATE Operations
 
-
+The project also includes practical `TRUNCATE` queries.
 
 
 ---
