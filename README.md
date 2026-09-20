@@ -602,7 +602,7 @@ Every contribution helps make this project better! 🙌
 
 <div align="center">
 
-## **Ujjawal Kumar**
+## **Ujjawal Kumar   **
 
 🎯 Learning **SQL & Data Analytics**
 
