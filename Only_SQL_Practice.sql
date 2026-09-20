@@ -460,6 +460,56 @@ SELECT * FROM OnlineCourses ;
 TRUNCATE TABLE OnlineCourses ;
 
 
+-- 🚀 SQL REVISION SET — 30 QUESTIONS
+
+CREATE TABLE RetailSales (
+    SaleID INT PRIMARY KEY,
+    Product VARCHAR(50),
+    Category VARCHAR(30),
+    City VARCHAR(30),
+    Quantity INT,
+    Price DECIMAL(10,2)
+);
+
+INSERT INTO RetailSales
+(SaleID, Product, Category, City, Quantity, Price)
+VALUES
+(101, 'Laptop', 'Electronics', 'Ranchi', 2, 55000),
+(102, 'Mouse', 'Accessories', 'Delhi', 5, 800),
+(103, 'Keyboard', 'Accessories', 'Ranchi', 3, 1500),
+(104, 'Monitor', 'Electronics', 'Mumbai', 2, 12000),
+(105, 'Laptop', 'Electronics', 'Delhi', 1, 55000),
+(106, 'Headphones', 'Accessories', 'Mumbai', 4, 2500),
+(107, 'Printer', 'Electronics', 'Ranchi', 1, 15000),
+(108, 'Mouse', 'Accessories', 'Delhi', 3, 800);
+SELECT * FROM RetailSales ;
+
+
+-- RetailSales table se Product, City aur Quantity display karo.
+SELECT Product, City, Quantity FROM retailsales ;
+
+-- Sirf un sales records ko display karo jahan Price 10000 se greater hai.
+SELECT * FROM retailsales 
+WHERE Price > 10000 ;
+
+-- Is query ka output predict karo:
+SELECT DISTINCT City
+FROM RetailSales
+ORDER BY City;
+
+-- Delhi
+-- Mumbai 
+-- Ranchi
+
+-- Delhi aur Ranchi city ke records find karo using IN.
+SELECT * FROM retailsales
+WHERE city IN ('Delhi' ,'Ranchi' );
+
+-- Har Category ka total Quantity find karo.
+SELECT category, count(*) AS total_quantity FROM retailsales
+GROUP BY category ;
+
+
 
 
 
