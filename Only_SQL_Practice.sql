@@ -608,10 +608,10 @@ WHERE department= 'IT'
 AND status= 'Active' ;
 
 -- 12.
--- UPDATE employees
--- SET salary= salary * 1.10
--- WHERE performance >= 90
--- AND experience >= 5 ;
+UPDATE employees
+SET salary= salary * 1.10
+WHERE performance >= 90
+AND experience >= 5 ;
 
 
 
