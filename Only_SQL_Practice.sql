@@ -595,11 +595,11 @@ HAVING avg(salary) > 50000
 ORDER BY department ;
 
 -- 10.
-SELECT department, avg(performance) AS average_performance
-FROM employees
-WHERE status= 'Active'
-AND experience BETWEEN 2 AND 6
-GROUP BY department ;
+-- SELECT department, avg(performance) AS average_performance
+-- FROM employees
+-- WHERE status= 'Active'
+-- AND experience BETWEEN 2 AND 6
+-- GROUP BY department ;
 
 -- 11.
 -- UPDATE employees
