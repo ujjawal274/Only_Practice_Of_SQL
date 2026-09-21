@@ -511,6 +511,110 @@ GROUP BY category ;
 
 
 
+-- 🚀 20-Question SQL Practice Set
+
+CREATE TABLE employees (
+    emp_id INT,
+    name VARCHAR(50),
+    department VARCHAR(30),
+    city VARCHAR(30),
+    salary INT,
+    age INT,
+    experience INT,
+    performance INT,
+    status VARCHAR(20)
+);
+
+INSERT INTO employees
+(emp_id, name, department, city, salary, age, experience, performance, status)
+VALUES
+(101, 'Amit', 'IT', 'Jamshedpur', 50000, 24, 2, 78, 'Active'),
+(102, 'Ravi', 'Sales', 'Ranchi', 40000, 27, 4, 82, 'Active'),
+(103, 'Neha', 'IT', 'Jamshedpur', 60000, 26, 3, 91, 'Active'),
+(104, 'Priya', 'HR', 'Kolkata', 45000, 29, 5, 74, 'Active'),
+(105, 'Rahul', 'Sales', 'Jamshedpur', 55000, 31, 6, 88, 'Active'),
+(106, 'Sneha', 'Finance', 'Ranchi', 65000, 28, 5, 95, 'Active'),
+(107, 'Karan', 'IT', 'Kolkata', 70000, 35, 8, 89, 'Inactive'),
+(108, 'Pooja', 'HR', 'Jamshedpur', 48000, 25, 2, 81, 'Active'),
+(109, 'Arjun', 'Finance', 'Kolkata', 75000, 33, 7, 93, 'Active'),
+(110, 'Simran', 'Sales', 'Ranchi', 42000, 23, 1, 69, 'Active'),
+(111, 'Mohit', 'IT', 'Ranchi', 52000, 30, 5, 85, 'Active'),
+(112, 'Anjali', 'Finance', 'Jamshedpur', 58000, 27, 3, 87, 'Inactive');
+
+
+-- SQL
+
+-- 1.
+SELECT * FROM employees 
+WHERE salary BETWEEN 50000 AND 65000 ;
+
+-- 2.
+SELECT name, department, salary, status FROM employees 
+WHERE department IN ('IT' ,'Finance' )
+AND salary > 55000 AND status = 'Active' ;
+
+-- 3. 
+-- 4.
+SELECT department, AVG(salary) AS avg_salary
+FROM employees
+GROUP BY department
+HAVING AVG(salary) > 55000 ;
+
+-- 5.
+SELECT department, count(*) AS total_active_employees, AVG(salary) AS average_salary FROM employees 
+WHERE status= 'Active' 
+GROUP BY department
+HAVING count(*) >= 2 AND AVG(salary) > 50000 ;
+
+-- 6.
+SELECT department, MIN(salary) AS minimum_salary,
+       MAX(salary) AS maximum_salary
+FROM employees
+GROUP BY department
+ORDER BY maximum_salary DESC;
+
+-- 7.
+SELECT name, department, salary, experience FROM employees
+WHERE (department= 'IT' AND experience >= 3)
+OR
+(department= 'Finance' AND salary > 60000);
+
+-- 8.
+SELECT department, count(*) AS total_active_employees, MAX(salary) AS max_salary FROM employees
+WHERE status= 'Active'
+GROUP BY department
+HAVING count(*) >= 2 
+AND max(salary) > 50000;
+
+-- 9.
+SELECT department, COUNT(*) AS total,
+avg(salary) AS average_salary    
+FROM employees
+GROUP BY department 
+HAVING avg(salary) > 50000
+ORDER BY department ;
+
+-- 10.
+SELECT department, avg(performance) AS average_performance
+FROM employees
+WHERE status= 'Active'
+AND experience BETWEEN 2 AND 6
+GROUP BY department ;
+
+-- 11.
+UPDATE employees
+SET salary= salary + 5000
+WHERE department= 'IT'
+AND status= 'Active' ;
+
+-- 12.
+UPDATE employees
+SET salary= salary * 1.10
+WHERE performance >= 90
+AND experience >= 5 ;
+
+
+
 
 
 
