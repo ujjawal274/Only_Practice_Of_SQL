@@ -602,10 +602,10 @@ AND experience BETWEEN 2 AND 6
 GROUP BY department ;
 
 -- 11.
-UPDATE employees
-SET salary= salary + 5000
-WHERE department= 'IT'
-AND status= 'Active' ;
+-- UPDATE employees
+-- SET salary= salary + 5000
+-- WHERE department= 'IT'
+-- AND status= 'Active' ;
 
 -- 12.
 UPDATE employees
