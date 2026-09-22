@@ -607,7 +607,7 @@ SET salary= salary + 5000
 WHERE department= 'IT'
 AND status= 'Active' ;
 
--- 12.
+12.
 UPDATE employees
 SET salary= salary * 1.10
 WHERE performance >= 90
