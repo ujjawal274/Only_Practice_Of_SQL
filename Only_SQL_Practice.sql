@@ -613,7 +613,7 @@ GROUP BY department ;
 -- -- WHERE performance >= 90
 -- AND experience >= 5 ;
 
-
+-- I practice new Rivision set called 30 Q. Practice_question_set 
 
 
 
