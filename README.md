@@ -446,7 +446,8 @@ And i solved about 14 questions.
 New
 
 I Practiced a New Revision Set that have 20 questions...
-And upload a .txt file of this set 
+And upload a .txt file of this the set,
+so basically this is the raw data set / structure.
 
 # 💡 Skills Developed
 
