@@ -443,6 +443,11 @@ SET SQL_SAFE_UPDATES = 1;
 I Practiced a New Revision Set that have 30 questions...
 And i solved about 14 questions.
 
+New
+
+I Practiced a New Revision Set that have 20 questions...
+And upload a .txt file of this set 
+
 # 💡 Skills Developed
 
 - 🗃️ Database Management
