@@ -162,6 +162,13 @@ SELECT course, avg(score) AS average_score
 -- FROM courseEnrollments
 -- GROUP BY course ;
 
+SELECT * FROM courseEnrollments;
+
+-- Q11 📝 Exam Type
+-- Score 80 se 90 ke beech wale students find karo using BETWEEN.
+SELECT * FROM courseEnrollments
+WHERE score BETWEEN 80 AND 90 ;
+
 
 
 
