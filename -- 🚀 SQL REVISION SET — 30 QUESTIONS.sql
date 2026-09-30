@@ -159,8 +159,8 @@ FROM CourseEnrollments;
 -- Q13 📊 Data Analyst Real Task
 -- Har course ke students ki average score find karo.
 SELECT course, avg(score) AS average_score
-FROM courseEnrollments
-GROUP BY course ;
+-- FROM courseEnrollments
+-- GROUP BY course ;
 
 
 
