@@ -1,0 +1,264 @@
+-- SQL PRACTICE: Q1–Q5
+-- Topics: WHERE, GROUP BY, HAVING, Aggregate Functions, ORDER BY
+-- Dataset: employees
+-- Note: JOIN was intentionally excluded from this practice.
+
+-- ============================================================
+-- Q1 — ERROR FINDING (EXTREME)
+-- ============================================================
+-- Original Question:
+-- Identify the error(s) and correct the query.
+
+-- Original Query:
+SELECT department, COUNT(*) AS total_employees
+FROM employees
+WHERE salary > 45000
+GROUP BY department
+HAVING salary > 55000
+ORDER BY total_employees DESC;
+
+-- USER'S ANSWER:
+-- The error is in: HAVING salary > 50000.
+-- HAVING ke sath salary appropriate nahi hoga because department-wise
+-- group bana rahe hain, so salary ka aggregate/calculated value chahiye.
+
+-- USER'S ATTEMPT:
+SELECT department, COUNT(*) AS total_employees, AVG(salary) AS average_salary
+FROM employees
+WHERE salary > 45000
+GROUP BY department
+HAVING average_salary > 55000
+ORDER BY total_employee DESC;
+
+-- CORRECTION:
+-- 1. HAVING salary > 55000 should use an aggregate when the condition
+--    is about a department-level value: AVG(salary) > 55000.
+-- 2. For exam/interview safety, use AVG(salary) directly in HAVING
+--    instead of relying on the SELECT alias.
+-- 3. Alias typo: total_employee -> total_employees.
+
+-- CORRECT QUERY:
+SELECT department,
+       COUNT(*) AS total_employees,
+       AVG(salary) AS average_salary
+FROM employees
+WHERE salary > 45000
+GROUP BY department
+HAVING AVG(salary) > 55000
+ORDER BY total_employees DESC;
+
+
+-- ============================================================
+-- Q2 — OUTPUT PREDICTION (EXTREME)
+-- ============================================================
+-- Question:
+-- Predict the output.
+
+SELECT department,
+       COUNT(*) AS employees,
+       AVG(salary) AS avg_salary
+FROM employees
+WHERE NOT (salary BETWEEN 45000 AND 65000)
+   OR status = 'Inactive'
+GROUP BY department
+HAVING COUNT(*) >= 2
+ORDER BY avg_salary DESC;
+
+-- USER'S ANSWER:
+-- Finance | 2 | 66500
+-- Sales   | 2 | 41000
+
+-- CORRECTION / RESULT:
+-- 100% CORRECT.
+--
+-- Qualifying rows:
+-- Ravi   -> Sales   -> 40000
+-- Karan  -> IT      -> 70000 (Inactive)
+-- Arjun  -> Finance -> 75000
+-- Simran -> Sales   -> 42000
+-- Anjali -> Finance -> 58000 (Inactive)
+--
+-- Finance: (75000 + 58000) / 2 = 66500
+-- Sales:   (40000 + 42000) / 2 = 41000
+-- IT has only 1 qualifying row, so HAVING COUNT(*) >= 2 removes IT.
+
+
+-- ============================================================
+-- Q3 — EXAM TYPE (EXTREME)
+-- ============================================================
+-- Question:
+-- Find departments with active employees, salary between 45000 and
+-- 70000, at least 2 qualifying employees, and average salary > 55000.
+-- Output department, employee_count, average_salary, total_salary.
+-- Sort by average salary descending.
+
+-- USER'S ANSWER:
+SELECT department,
+       COUNT(*) AS employee_count,
+       AVG(salary) AS average_salary,
+       SUM(salary) AS total_salary
+FROM employees
+WHERE status = 'Active'
+  AND salary BETWEEN 45000 AND 70000
+GROUP BY department
+HAVING COUNT(*) <= 2
+   AND average_salary > 55000
+ORDER BY average_salary DESC;
+
+-- CORRECTION:
+-- 1. "At least 2" means >= 2, not <= 2.
+-- 2. For exam/interview safety, use AVG(salary) directly in HAVING
+--    instead of the SELECT alias average_salary.
+
+-- CORRECT QUERY:
+SELECT department,
+       COUNT(*) AS employee_count,
+       AVG(salary) AS average_salary,
+       SUM(salary) AS total_salary
+FROM employees
+WHERE status = 'Active'
+  AND salary BETWEEN 45000 AND 70000
+GROUP BY department
+HAVING COUNT(*) >= 2
+   AND AVG(salary) > 55000
+ORDER BY AVG(salary) DESC;
+
+
+-- ============================================================
+-- Q4 — INTERVIEW TYPE (EXTREME)
+-- ============================================================
+-- Given Query:
+SELECT department, COUNT(*) AS total
+FROM employees
+WHERE salary > 50000
+GROUP BY department
+HAVING COUNT(*) > 1;
+
+-- Question:
+-- 1. Can HAVING COUNT(*) > 1 be replaced by WHERE COUNT(*) > 1?
+-- 2. Explain why.
+-- 3. Explain SQL processing logic.
+-- 4. Give an alternative/example.
+
+-- USER'S ANSWER SUMMARY:
+-- 1. NO.
+-- 2. HAVING filters groups using aggregate results such as COUNT(*).
+--    WHERE filters individual rows.
+-- 3. WHERE salary > 50000 filters rows first.
+--    GROUP BY creates department-wise groups.
+--    COUNT(*) counts rows inside each department group.
+--    HAVING COUNT(*) > 1 keeps only groups whose count is > 1.
+--
+-- CORRECTION:
+-- Main concept was correct.
+-- Important wording correction:
+-- "HAVING filters aggregate functions" is not precise.
+-- Correct: HAVING filters GROUPS, and it can use aggregate-function
+-- results in its condition.
+--
+-- Also, COUNT(*) here is NOT the count of all rows in the whole table;
+-- it is the count of rows within each department group.
+
+-- USER'S QUERY HAD A SMALL SYNTAX ISSUE:
+-- FROM employees was missing, and "AS total employees" should use
+-- an underscore (or another valid alias format).
+
+-- CORRECT QUERY:
+SELECT department,
+       COUNT(*) AS total_employees
+FROM employees
+WHERE salary > 50000
+GROUP BY department
+HAVING COUNT(*) > 1;
+
+-- OUTPUT:
+-- department | total_employees
+-- IT         | 3
+-- Finance    | 3
+--
+-- Sales is removed because its count is only 1.
+
+
+-- ============================================================
+-- Q5 — REAL DATA ANALYST TASK (EXTREME)
+-- ============================================================
+-- Question:
+-- For active employees with performance >= 80 and salary between
+-- 45000 and 70000, create a department report containing:
+-- employee_count, total_salary, average_salary, minimum_salary,
+-- maximum_salary, average_performance.
+-- Keep departments with at least 2 employees and average performance > 85.
+-- Sort by average performance descending.
+
+-- USER'S ANSWER:
+SELECT department,
+       COUNT(*) AS employee_count,
+       SUM(salary) AS total_salary,
+       AVG(salary) AS average_salary,
+       MIN(salary) AS minimum_salary,
+       MAX(salary) AS maximum_salary,
+       AVG(performance) AS average_performance
+FROM employees
+WHERE status = 'Active'
+  AND performance >= 80
+  AND salary BETWEEN 45000 AND 70000
+GROUP BY department
+HAVING COUNT(*) >= 2
+   AND average_performance > 85
+ORDER BY average_performance DESC;
+
+-- CORRECTION:
+-- Overall query logic was correct.
+-- Only subtle point: average_performance is a SELECT alias.
+-- Some SQL dialects allow aliases in HAVING, but for exam/interview
+-- safety, use AVG(performance) directly in HAVING.
+-- Using the alias in ORDER BY is generally fine.
+
+-- CORRECT QUERY:
+SELECT department,
+       COUNT(*) AS employee_count,
+       SUM(salary) AS total_salary,
+       AVG(salary) AS average_salary,
+       MIN(salary) AS minimum_salary,
+       MAX(salary) AS maximum_salary,
+       AVG(performance) AS average_performance
+FROM employees
+WHERE status = 'Active'
+  AND performance >= 80
+  AND salary BETWEEN 45000 AND 70000
+GROUP BY department
+HAVING COUNT(*) >= 2
+   AND AVG(performance) > 85
+ORDER BY average_performance DESC;
+
+
+-- ============================================================
+-- OVERALL RESULT
+-- ============================================================
+-- Q1 = 8/10
+-- Q2 = 10/10
+-- Q3 = 8/10
+-- Q4 = 8.5/10
+-- Q5 = 9.5/10
+--
+-- TOTAL = 44/50 = 88%
+--
+-- Strong areas:
+-- * WHERE vs HAVING
+-- * GROUP BY + aggregate functions
+-- * COUNT(), SUM(), AVG(), MIN(), MAX()
+-- * Complex filtering
+-- * Building multi-condition grouped queries
+--
+-- Main mistakes to watch:
+-- * >= vs <=
+-- * Aggregate alias vs aggregate expression in HAVING
+-- * Final output/count calculation
+-- * Small SQL syntax/alias mistakes
+--
+-- Core rule:
+-- WHERE       -> filters rows
+-- GROUP BY    -> creates groups
+-- Aggregate   -> calculates a value for each group
+-- HAVING      -> filters groups
+-- ORDER BY    -> sorts the final result
