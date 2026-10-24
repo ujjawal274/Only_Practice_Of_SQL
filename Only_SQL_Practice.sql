@@ -14,8 +14,9 @@ VALUES
 (103, 'Vikash', 'HR', 25000),
 (104, 'Raj', 'IT', 18000),
 (105, 'Kunal', 'Marketing', 23000);
-
 SELECT * FROM employees;
+
+-- ADD COLUMN --
 
 ALTER table employees 
 ADD COLUMN Age INT ;
@@ -38,13 +39,13 @@ MODIFY COLUMN Email INT;
 ALTER TABLE Employees
 MODIFY COLUMN Department VARCHAR(100) ;
 ALTER TABLE Employees
-MODIFY COLUMN Salary DECIMAL(12,2);
+MODIFY COLUMN Salary DECIMAL(12,2); -- Changing Data Type: DECIMAL(10,2) to DECIMAL(12,2)
 ALTER TABLE Employees
 MODIFY COLUMN EmpID BIGINT;
 ALTER TABLE Employees
 MODIFY COLUMN EmpName VARCHAR(100) NOT NULL ;
 
--- RENAME COLUMN --
+-- RENAME --
 
 ALTER TABLE Employees
 RENAME COLUMN EmpName TO EmployeeName ;
@@ -78,7 +79,7 @@ RENAME column StudentID TO ID ;
 ALTER TABLE students
 RENAME 	column City TO StudentCity ;
 
--- DROP COLUMN --
+-- DROP --
 
 CREATE TABLE Products (
     ProductID INT PRIMARY KEY,
@@ -112,7 +113,7 @@ DROP COLUMN Category ;
 ALTER TABLE products
 DROP COLUMN price ;
 
--- RENAME TABLE --
+-- RENAME TABLE--
 
 CREATE TABLE Books (
     BookID INT PRIMARY KEY,
