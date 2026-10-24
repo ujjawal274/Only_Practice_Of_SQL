@@ -1,3 +1,4 @@
+-- Database Name: --
 use sys;
 
 CREATE TABLE Employees (
