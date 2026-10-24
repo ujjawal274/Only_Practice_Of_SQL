@@ -29,6 +29,7 @@ ALTER table Employees
 ADD COLUMN Experience DECIMAL(3,1)  DEFAULT 0.0;
 
 -- MODIFY --
+
 ALTER table Employees
 MODIFY COLUMN EmpName VARCHAR(100) ;
 -- my query --
